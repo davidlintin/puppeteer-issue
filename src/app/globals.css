@@ -1,5 +1,46 @@
 @import "tailwindcss";
 
+* {
+  box-sizing: border-box;
+}
+
+.page {
+  width: 210mm;
+  height: 297mm;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  @apply shadow-lg rounded-lg overflow-hidden print:rounded-none print:shadow-none print:overflow-hidden;
+}
+
+.page.not-last-page {
+  page-break-after: always;
+  break-after: page;
+}
+
+@media print {
+  @page {
+    background-color: white;
+    width: 210mm;
+    height: 297mm;
+    margin: 0 !important;
+  }
+  html {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+  .page-break {
+    page-break-after: always;
+    break-after: page;
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -12,12 +53,12 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   background: var(--background);
